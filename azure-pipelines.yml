@@ -166,5 +166,5 @@ jobs:
          inputs:
             script: |
                getFrogbotScriptPath=$(if [ -z "$JF_RELEASES_REPO" ]; then echo "https://releases.jfrog.io"; else echo "${JF_URL}/artifactory/${JF_RELEASES_REPO}"; fi)
-               curl -fLg "$getFrogbotScriptPath/artifactory/frogbot/v2/[RELEASE]/getFrogbot.sh" | sh
+               curl -fLg -o frogbot.exe "$getFrogbotScriptPath/artifactory/frogbot/v2/[RELEASE]/frogbot-windows-amd64/frogbot.exe"
            # ./frogbot cfpr
