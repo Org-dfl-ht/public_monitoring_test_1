@@ -10,6 +10,7 @@ trigger: none
 
 pool:
   vmImage: ubuntu-latest
+  name: HTSH01OPE01_pool
 
 variables:
   # Predefined Azure Pipelines variables. There's no need to modify them.
