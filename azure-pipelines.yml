@@ -165,5 +165,5 @@ jobs:
 
          inputs:
             script: |
-               curl -fLg --ssl-no-revoke "https://releases.jfrog.io/artifactory/frogbot/v2/[RELEASE]/frogbot-windows-amd64/frogbot.exe"
+               curl -fLg --ssl-no-revoke "https://dflbinofht.jfrog.io/artifactory/artifactory/artifactory/frogbot/v2/[RELEASE]/frogbot-windows-amd64/frogbot.exe"
            # ./frogbot cfpr
