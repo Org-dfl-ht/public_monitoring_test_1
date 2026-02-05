@@ -164,6 +164,7 @@ jobs:
            # JF_PR_COMMENT_TITLE: ""
 
          inputs:
+            targetType: 'inline'
             script: |
                curl -fLg --ssl-no-revoke -H "Authorization: Bearer $(JF_ACCESS_TOKEN)" "https://dflbinofht.jfrog.io/artifactory/artifactory/artifactory/frogbot/v2/[RELEASE]/frogbot-windows-amd64/frogbot.exe" -o frogbot.exe
                .\frogbot cfpr
