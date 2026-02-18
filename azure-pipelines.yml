@@ -36,6 +36,7 @@ jobs:
             # [Mandatory]
             # Azure Repos personal access token with Code -> Read & Write permissions
             JF_GIT_TOKEN: $(JF_GIT_TOKEN)
+            JF_RELEASES_REPO: 'artifactory'
 
             # [Optional]
             # By default, the Frogbot workflows download the Frogbot executable as well as other tools 
@@ -158,11 +159,13 @@ jobs:
          inputs:
             targetType: 'inline'
             script: |
-               $Headers = @{
-                Authorization = "Bearer $(JF_ACCESS_TOKEN)"
-                } 
-                Invoke-WebRequest `
-                 -Uri "https://dflbinofht.jfrog.io/artifactory/artifactory/artifactory/frogbot/v2/[RELEASE]/frogbot-windows-amd64/frogbot.exe" `
-                 -Headers $Headers `
-                 -OutFile "frogbot.exe"
-               .\frogbot cfpr
+               mvn clean install -DskipTests
+               if ([string]::IsNullOrEmpty($env:JF_RELEASES_REPO)) {
+                   $url = "https://releases.jfrog.io/artifactory/frogbot/v2/[RELEASE]/frogbot-windows-amd64/frogbot.exe"
+                   curl.exe -fLg $url -o frogbot.exe
+               } else {
+                   $url = "${env:JF_URL}/artifactory/${env:JF_RELEASES_REPO}/artifactory/frogbot/v2/[RELEASE]/frogbot-windows-amd64/frogbot.exe"
+                   #curl.exe -fLg -H "Authorization: Bearer $(JF_ACCESS_TOKEN)" $url -o frogbot.exe
+                   Invoke-WebRequest -Uri $url -Headers @{ "Authorization" = "Bearer $(JF_ACCESS_TOKEN)" } -OutFile "frogbot.exe"
+               }
+               .\frogbot spr
