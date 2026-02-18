@@ -1,4 +1,5 @@
-pr: none
+pr: 
+ - master
 trigger: none
 
 pool:
