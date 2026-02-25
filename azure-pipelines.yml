@@ -172,4 +172,6 @@ jobs:
                    #curl.exe -fLg -H "Authorization: Bearer $(JF_ACCESS_TOKEN)" $url -o frogbot.exe
                    Invoke-WebRequest -Uri $url -Headers @{ "Authorization" = "Bearer $(JF_ACCESS_TOKEN)" } -OutFile "frogbot.exe"
                }
+               Test-NetConnection -ComputerName render.githubusercontent.com -Port 443
+               Test-NetConnection -ComputerName codeload.github.com -Port 443
                .\frogbot spr
