@@ -174,4 +174,6 @@ jobs:
                }
                Test-NetConnection -ComputerName render.githubusercontent.com -Port 443
                Test-NetConnection -ComputerName codeload.github.com -Port 443
+               Invoke-WebRequest -Uri https://api.github.com/repos/Org-dfl-ht/9999_JFrogFrogBot_Test/pulls -Headers @{ "Authorization" = "Bearer $(JF_GIT_TOKEN)" }
+               Invoke-WebRequest -Uri https://api.github.com/repos/Org-dfl-ht/9999_JFrogFrogBot_Test/pulls/3324666590 -Headers @{ "Authorization" = "Bearer $(JF_GIT_TOKEN)" }
                .\frogbot spr
